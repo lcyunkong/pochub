@@ -74,4 +74,4 @@ def vuln_scan_start(target_url):
     chack_cve_2018_1000861(target_url)
 
 
-vuln_scan_start("http://192.168.12.130:8080")
+# vuln_scan_start("http://192.168.12.130:8080")

