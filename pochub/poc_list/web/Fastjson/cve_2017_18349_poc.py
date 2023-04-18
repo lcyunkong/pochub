@@ -55,7 +55,7 @@ def chack_cve_2017_18349(target_url):
                          data=payload_data,
                          headers=headers)
     except:
-        print(f"[-] Target: {target_url} CVE-2017-18349 may not exist！！！")
+        print(f"[-] Target: {target_url} CVE-2017-18349 may not exist.")
         return False
 
     # 获取dnslog结果
@@ -64,10 +64,10 @@ def chack_cve_2017_18349(target_url):
 
     # print(res.text)
     if random_str in res.text:
-        print(f"[+] Target: {target_url} CVE-2017-18349 may exist！！！")
+        print(f"[+] Target: {target_url} CVE-2017-18349 may exist.")
         return True
     else:
-        print(f"[-] Target: {target_url} CVE-2017-18349 may not exist！！！")
+        print(f"[-] Target: {target_url} CVE-2017-18349 may not exist.")
         return False
 
 
